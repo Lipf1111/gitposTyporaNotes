@@ -1,0 +1,151 @@
+# 一、语法部分
+
+## 1.make
+
+Linux自带的构建器，构建规则在makefile文件中
+
+## 2.makefile文件的命名
+
+1. makefile
+2. Makefile
+
+## 3.makefile文件规则的书写
+
+<font color=blue>makefile文件共有三部分：目标、依赖、命令。</font>
+
+- 规则的格式：
+
+    ```shell
+    app(目标):test1.c test2.c(依赖)
+    	gcc test1.c test2.c -o app(命令)
+    ```
+
+# 二、makefile的工作原理
+
+<font color=red>makefile会在文件中从上到下检测依赖是否存在。</font>如果存在,判断时间,原则：如果目标的生成时间比依赖的时间晚，更新；如果不存在报错。
+
+# 三、makefile变量的使用
+
+## 1.自定义变量
+
+<font color=blue>makefile中定义变量时不需要类型</font>
+
+```makefile
+obj = test1.o test2.o test3.o(字符串)
+obj = 10(int型)
+```
+
+## 2.makefile自带的变量，都是大写的
+
+- CPPFLAGS
+- CC
+
+## 3.自动变量<font color=red>（只能在规则的命令中使用）</font>
+
+1. $@：规则中的目标
+2. $<：规则中的第一个依赖
+3. $^：规则中的所有依赖
+
+**例子：**
+
+```makefile
+obj=main.o add.o sub.o mul.o #定义依赖变量
+target=app #定义目标变量
+$(target):$(obj)
+	gcc $(obj) -o $(target)
+%.o:%.c #模式匹配
+	gcc -c $< -o $@
+```
+
+模式匹配的过程：
+
+`%.o:%.c`
+
+1. 第一次:makefile文件向下寻找生成main.o目标的规则，没有找到，然后进行模式匹配
+
+    ```makefile
+    main.o:main.c
+    	gcc -c main.c -o main.o
+    ```
+
+2. 第二次：makefile文件向下寻找生成add.o目标的规则，没有找到，然后进行模式匹配
+
+    ```makefile
+    add.o:add.c
+    	gcc -c add.c -o add.o
+    ```
+
+3. 如此循环 ，知道找到第一条规则中的所有依赖
+
+## 4.makefile中的函数
+
+- <font color=red>makefile中所有的函数都有返回值</font>
+
+- wildcard函数：查找指定目录下指定类型的文件
+
+    ```makefile
+    src=$(wildcard ./ *.c)#查找当前目录下所有.c文件
+    ```
+
+- patsubst函数：匹配替换
+
+    ```makefile
+    obj=$(patsubst %.c,%.o,$(src))#将$(src)中所有的.c文件替换为.o文件
+    ```
+
+## 5.在makefile中添加清理项目的规则make clean
+
+<font color=blue>makefile中可以添加只有目标没有依赖的规则，在make后加上此目标名调用此规则</font>
+
+```makefile
+clean:
+	rm *.o app
+```
+
+# 四、makefile的一个例子
+
+```makefile
+src=$(wildcard ./*.c)#wildcard函数：查找指定目录下的指定类型文件，存在src变量中
+obj=$(patsubst %.c,%.o,$(src))#patsubst函数：匹配替换。将$(src)变量中的.c文件替换为.o文件
+target=app
+$(target):$(obj)
+	gcc $^ -o $@
+#	gcc $(obj) -o $(target)
+%.o:%.c
+	gcc -c $< -o $@
+# .PHONY声明为伪目标，就是说clean这个目标不需要依赖，不用在向下去查找了。
+.PHONY:clean 
+clean:
+	-rm -f $(obj) $(target) 
+#-f:强制这句话，当发生错误的时候也不会提示，例如当没有$(obj)这些文件时，删除也不会报错
+#命令前面加-：当这句话没有执行成功时，仍然接着执行下面的代码。
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
