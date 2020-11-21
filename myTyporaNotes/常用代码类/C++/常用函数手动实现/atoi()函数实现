@@ -1,0 +1,54 @@
+# 字符串转换为整型
+
+主要思想：
+
+- 利用字符型数字的ASCII码值减去字符型数字‘0’的ASCII码值，得到的就是想要的数字
+
+- 例如：字符'4'的ASCII码为52，字符'0'的ASCII码为48
+
+    `'4' - '0' = 52-48 = 4`
+
+```c++
+#include <iostream>
+using namespace std;
+
+int str2int(const char* str) {
+	if (str == NULL)
+		return -1;
+
+	//保存第一个字符地址，便于后面判断正负
+	const char* ptr = str;
+
+	//如果第一个字符是正负号，那么就不转换
+	if (*str == '+' || *str == '-')
+		str++;
+
+	int temp = 0;
+	while (*str != '\0')
+	{
+		//字符0的ASCII码是48，字符9的ASCII码是57，这里的比较会转化为ASCII码值进行比较
+		if(*str < '0' || *str > '9')
+			break;	//如果不是数字就跳出循环，返回0
+
+		temp = temp * 10 + (*str - '0');
+		str++;	//将指针向后移动
+	}
+
+	//虽然上面对第一个符号的正负号进行判断了，但是这里返回的temp
+	if (*ptr == '-')
+	{
+		temp = -temp;
+	}
+	return temp;
+}
+
+int main() {
+
+	char p[10] = "";
+	//getline()函数只会收录包括换行符\n在内的10个字符
+	cin.getline(p, 10);
+	int num = str2int(p);
+	cout << num << endl;
+	return 0;
+}
+```

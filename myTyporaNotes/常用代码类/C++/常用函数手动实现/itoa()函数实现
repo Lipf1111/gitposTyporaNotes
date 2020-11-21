@@ -1,0 +1,45 @@
+# 整型转化为字符串
+
+```c++
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+char* int2str(int num) {
+	char* buf = new char[10];
+	memset(buf, 0, 10);
+	int temp = num < 0 ? -num : num;//取num的绝对值temp
+	int i = 0;
+	while (temp != 0)
+	{
+		buf[i++] = (temp % 10) + '0';
+		temp /= 10;
+	}
+
+	//如果num<0就让数组多交换一次，下标0的位置填'-'号
+	num >= 0 ? --i : i;
+	for (int j = 0, k = i ; j < k; j++, k--)
+	{
+		int t = buf[j];
+		buf[j] = buf[k];
+		buf[k] = t;
+	}
+
+	if (num < 0)
+	{
+		buf[0] = '-';
+	}
+	return buf;
+}
+
+
+int main() {
+	int num = 0;
+	cin >> num;
+	char* str = int2str(num);
+	cout << str << endl;
+	delete[] str;
+	return 0;
+}
+```
+
