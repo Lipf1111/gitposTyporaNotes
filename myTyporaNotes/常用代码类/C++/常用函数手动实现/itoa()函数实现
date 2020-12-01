@@ -32,7 +32,6 @@ char* int2str(int num) {
 	return buf;
 }
 
-
 int main() {
 	int num = 0;
 	cin >> num;
