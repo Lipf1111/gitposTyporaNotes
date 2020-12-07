@@ -82,6 +82,29 @@ Widget::Widget(QWidget *parent)
     });
 ```
 
+# 自定义控件
+
+1. 添加新Qt设计师界面文件，在主窗口widget.ui中添加控件widget，然后将此控件提升为类，选择类名MyWidgetUi，并且设置全局包含
+2. 此时主窗口中的ui->widget就代表着MyWidgetUi类
+3. 在MyWidgetUi类中实现函数（外部接口），可以在主窗口中使用ui->widget调用这些函数完成对mywidgetui.ui的控制
+
+![image-20201207112312534](UI控件.assets/image-20201207112312534.png)
+
+```c++
+Widget::Widget(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::Widget)
+{
+    ui->setupUi(this);
+    connect(ui->pushButton,&QPushButton::clicked,[=](){
+        ui->widget->mySetValue(50);
+    });
+    connect(ui->pushButton_2,&QPushButton::clicked,[=](){
+        qDebug() << ui->widget->myGetValue();
+    });
+}
+```
+
 
 
 
