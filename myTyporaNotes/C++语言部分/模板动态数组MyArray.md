@@ -35,6 +35,7 @@ public:
 			for (int i = 0; i < this->m_Size; i++) {
 				m_pNewAddr[i] = this->m_pAddr[i];
 			}
+            delete[] this->m_pAddr;
 			this->m_pAddr = m_pNewAddr;
 		}
 		this->m_pAddr[this->m_Size++] = value;
