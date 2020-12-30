@@ -29,7 +29,6 @@ Widget::Widget(QWidget *parent)
     }
     qDebug() << obj2.length();//获取Json文件长度
     qDebug() << obj2.value("姓名").toString();//通过key值获得value
-
 }
 ```
 

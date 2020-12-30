@@ -1,6 +1,6 @@
 # `QApplication`应用程序类
 
-![image-20201204163621121](main函数.assets/image-20201204163621121.png)
+![image-20201204163621121](picture.assets/image-20201204163621121.png)
 
 ```c++
 MyWidget::MyWidget(QWidget *parent)

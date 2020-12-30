@@ -88,7 +88,7 @@ Widget::Widget(QWidget *parent)
 2. 此时主窗口中的ui->widget就代表着MyWidgetUi类
 3. 在MyWidgetUi类中实现函数（外部接口），可以在主窗口中使用ui->widget调用这些函数完成对mywidgetui.ui的控制
 
-![image-20201207112312534](UI控件.assets/image-20201207112312534.png)
+![image-20201207112312534](picture.assets/image-20201207112312534.png)
 
 ```c++
 Widget::Widget(QWidget *parent)

@@ -1,8 +1,8 @@
-![image-20201207113316835](Qt事件.assets/image-20201207113316835.png)
+![image-20201207113316835](picture.assets/image-20201207113316835.png)
 
-![image-20201207113414915](Qt事件.assets/image-20201207113414915.png)
+![image-20201207113414915](picture.assets/image-20201207113414915.png)
 
-![image-20201207114057970](Qt事件.assets/image-20201207114057970.png)
+![image-20201207114057970](picture.assets/image-20201207114057970.png)
 
 # 鼠标事件
 
@@ -75,13 +75,13 @@ MyLabel::MyLabel(QWidget *parent) : QLabel(parent)
 
 # 事件分发器`event`
 
-![image-20201207144639991](Qt事件.assets/image-20201207144639991.png)
+![image-20201207144639991](picture.assets/image-20201207144639991.png)
 
-![image-20201207145103341](Qt事件.assets/image-20201207145103341.png)
+![image-20201207145103341](picture.assets/image-20201207145103341.png)
 
-![image-20201207145156023](Qt事件.assets/image-20201207145156023.png)
+![image-20201207145156023](picture.assets/image-20201207145156023.png)
 
-![image-20201207160002974](Qt事件.assets/image-20201207160002974.png)
+![image-20201207160002974](picture.assets/image-20201207160002974.png)
 
 ```c++
 virtual bool event(QEvent *e) override;//头文件中重写event事件
@@ -107,15 +107,15 @@ bool MyLabel::event(QEvent *e)
 
 # 事件过滤器
 
-![image-20201207151911005](Qt事件.assets/image-20201207151911005.png)
+![image-20201207151911005](picture.assets/image-20201207151911005.png)
 
-![image-20201207151746632](Qt事件.assets/image-20201207151746632.png)
+![image-20201207151746632](picture.assets/image-20201207151746632.png)
 
-![image-20201207154604848](Qt事件.assets/image-20201207154604848.png)
+![image-20201207154604848](picture.assets/image-20201207154604848.png)
 
-![image-20201207154619962](Qt事件.assets/image-20201207154619962.png)
+![image-20201207154619962](picture.assets/image-20201207154619962.png)
 
-![image-20201207154718751](Qt事件.assets/image-20201207154718751.png)
+![image-20201207154718751](picture.assets/image-20201207154718751.png)
 
 **<font color = green>事件过滤器添加步骤：</font>**
 
@@ -144,9 +144,9 @@ bool MyLabel::eventFilter(QObject *obj, QEvent *e)
 
 # 总结
 
-![image-20201207160234830](Qt事件.assets/image-20201207160234830.png)
+![image-20201207160234830](picture.assets/image-20201207160234830.png)
 
-![image-20201207160255350](Qt事件.assets/image-20201207160255350.png)
+![image-20201207160255350](picture.assets/image-20201207160255350.png)
 
 # 定时器事件
 

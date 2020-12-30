@@ -77,7 +77,6 @@ MyMainWindow::MyMainWindow(QWidget *parent)
 	//给菜单file、菜单项open添加图标
     open->setIcon(QIcon(QPixmap("../image/1.jpg")));
     file->setIcon(QIcon(QPixmap("../image/2.jpg")));
-
 }
 ```
 
